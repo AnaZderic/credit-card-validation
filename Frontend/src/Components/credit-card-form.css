@@ -1,0 +1,25 @@
+.container {
+    margin-top: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.formContent {
+    width: 550px; 
+    padding: 40px;
+    border-radius: 12px;
+    -webkit-box-shadow: -1px 8px 15px 0px rgba(31, 66, 114, 0.50);
+    -moz-box-shadow: -1px 8px 15px 0px rgba(31, 65, 114, 0.50);
+    box-shadow: -1px 8px 15px 0px rgba(31, 65, 114, 0.50);
+}
+
+.formGroup {
+    padding-bottom: 5px;
+}
+
+.button {
+    margin-top: 10px;
+    padding: 10px;
+    
+}
