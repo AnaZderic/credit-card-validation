@@ -6,11 +6,12 @@ import "./credit-card-form.css";
 
 const CreditCardForm = () => {
     const { handleChange, handleSubmit, values } = BaseForm();
+    
     return(
         <div className="container">
             <div className="box justify-content-center align-items-center">
                 <div className="formContent">
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} method="post" action="/">
                     <FormGroup className="formGroup">
                         <FloatingLabel
                             label="Card Number"
@@ -34,27 +35,28 @@ const CreditCardForm = () => {
                                     className="mb-3"
                                 >
                                     <FormControl
-                                        type="text"
+                                        type="month"
                                         id="expirationDate"
                                         name="expirationDate"
                                         placeholder="Expiration Date"
                                         value={values.expirationDate}
                                         onChange={handleChange}
                                     />
+                                   
                                 </FloatingLabel>
                             </FormGroup>
                         </Col>
                         <Col>
                         <FormGroup className="formGroup">
                             <FloatingLabel
-                                label="CVC"
+                                label="CVV"
                                 className="mb-3"
                             >
                                 <FormControl
                                     type="number"
-                                    id="cvc"
-                                    name="cvc"
-                                    placeholder="CVC"
+                                    id="cvv"
+                                    name="cvv"
+                                    placeholder="cvv"
                                     onChange={handleChange}
                                 />
                             </FloatingLabel>
