@@ -19,8 +19,7 @@ const BaseForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-    
-        const url = 'http://127.0.0.1:3000/';
+            
         const data = {
             cardNumber: values.cardNumber,
             name: values.name,
@@ -34,13 +33,15 @@ const BaseForm = () => {
             },
             body: JSON.stringify(data)
         };
-    
-        fetch(url, requestOptions)
+
+        fetch("/api/validate-form", requestOptions)
         .then(response => {
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
+            console.log(response);
+            if (response.ok) {
+                return response.json();
             }
-            return response.json(); 
+            throw new Error('Network response was not ok');
+
         })
         .then(data => {
             console.log('POST request successful:', data);
@@ -50,7 +51,7 @@ const BaseForm = () => {
         });
     }
 
-    return {handleChange, handleSubmit, values}
+    return {handleChange, handleSubmit, values};
 }
 
 export default BaseForm;
