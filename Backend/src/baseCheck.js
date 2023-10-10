@@ -9,7 +9,7 @@ let twoDigits = [];
 
 const checkCardNumber = (pan) => {
     twoDigits.push(pan[0], pan[1]);
-    if(pan.match(numbers) && (pan.length > 15 && pan.length < 20)) {
+    if(pan.match(numbers) && (pan.length >= 15 && pan.length < 20)) {
         if (!LuhnAlgorithm(pan)) {
             res.errors.luhnError = "Invalid card number";
             res.success = false; 

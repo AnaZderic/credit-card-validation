@@ -17,9 +17,7 @@ const BaseForm = () => {
         })
     };
 
-    const handleSubmit = e => {
-        e.preventDefault();
-            
+    const handleSubmit = setShow => e => {
         const data = {
             cardNumber: values.cardNumber,
             name: values.name,
@@ -35,20 +33,13 @@ const BaseForm = () => {
         };
 
         fetch("/api/validate-form", requestOptions)
-        .then(response => {
-            console.log(response);
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Network response was not ok');
-
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log('POST request successful:', data);
+            data.success
+            ? setShow({ toggle: true, success: true, errorsModel: false })
+            : setShow({ toggle: true, success: false, errorsModel: data.errors });
         })
-        .catch(error => {
-            console.error('There was a problem with the POST request:', error);
-        });
+
     }
 
     return {handleChange, handleSubmit, values};
