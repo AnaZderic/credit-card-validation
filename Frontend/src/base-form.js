@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const BaseForm = () => {
+const baseForm = () => {
 
     const [values, setValues] = useState({
         cardNumber: "",
@@ -45,4 +45,4 @@ const BaseForm = () => {
     return {handleChange, handleSubmit, values};
 }
 
-export default BaseForm;
+export default baseForm;

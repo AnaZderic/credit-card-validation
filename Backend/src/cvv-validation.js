@@ -1,4 +1,4 @@
-const cvvValid = (cvv, twoDigits) => {
+const isCvvValid = (cvv, twoDigits) => {
     if(twoDigits[0] == 3 && (twoDigits[1] == 4 || twoDigits[1] == 7)) {
 
         if(cvv.length == 4) {
@@ -20,4 +20,4 @@ const cvvValid = (cvv, twoDigits) => {
     }
 }
 
-module.exports = {cvvValid};
+module.exports = {isCvvValid};

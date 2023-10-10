@@ -2,10 +2,10 @@ import { Button, Form, Row, Col, FormGroup, FormControl, FloatingLabel, Modal } 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./credit-card-form.css";
 import React from "react";
-import BaseForm from "../baseForm";
+import baseForm from "../base-form";
 
 const CreditCardForm = () => {
-    const { handleChange, handleSubmit, values } = BaseForm();
+    const { handleChange, handleSubmit, values } = baseForm();
     const [show, setShow] = React.useState({ toggle: false, success: false, errorsModel: false});
     
     return(

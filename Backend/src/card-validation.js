@@ -1,13 +1,13 @@
 const ResponseModel = require("./Models/response");
 const {LuhnAlgorithm} = require("./luhn-algorithm.js");
-const {ExpirationDateCheck} = require("./expiration-date.js");
-const {cvvValid} = require("./cvv.js");
+const {isExpirationDateValid} = require("./expiration-date-validation.js");
+const {isCvvValid} = require("./cvv-validation.js");
 
 let res = new ResponseModel();
 let numbers = /^[0-9]+$/;
 let twoDigits = [];
 
-const checkCardNumber = (pan) => {
+const cardNumberValidation = (pan) => {
     twoDigits.push(pan[0], pan[1]);
     if(pan.match(numbers) && (pan.length >= 15 && pan.length < 20)) {
         if (!LuhnAlgorithm(pan)) {
@@ -20,28 +20,28 @@ const checkCardNumber = (pan) => {
     }
 }
 
-const checkExpiryDate = (expDate) => {
-    if(!ExpirationDateCheck(expDate)) {
+const expiryDateValidation = (expDate) => {
+    if(!isExpirationDateValid(expDate)) {
         res.errors.cardExpiredError = "Card has expired";
         res.success = false; 
     }
 }
 
-const checkCvvBase = (cvv) => {
+const cvvValidation = (cvv) => {
     let match = cvv.match(numbers);
-    if(!match || !cvvValid(cvv, twoDigits)) {
+    if(!match || !isCvvValid(cvv, twoDigits)) {
         res.errors.cvvError = "Invalid CVV";
         res.success = false; 
     } 
 }
 
-const baseCheck = (formData) => {
+const cardValidation = (formData) => {
     res = new ResponseModel();
     twoDigits = [];
-    checkCardNumber(formData.cardNumber);
-    checkExpiryDate(formData.expirationDate);
-    checkCvvBase(formData.cvv);
+    cardNumberValidation(formData.cardNumber);
+    expiryDateValidation(formData.expirationDate);
+    cvvValidation(formData.cvv);
     return res;
 }
 
-module.exports = { baseCheck };
+module.exports = {cardValidation};

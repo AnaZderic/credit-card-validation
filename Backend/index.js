@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require("express");
 const bodyParser = require('body-parser');
-const {baseCheck} = require("./src/baseCheck");
+const {cardValidation} = require("./src/card-validation");
 
 const hostname = "127.0.0.1";
 const port = 3001;
@@ -12,13 +12,13 @@ app.use(bodyParser.json());
 
 app.post("/api/validate-form", (req, res) => {
     let formData = req.body;
-    let bc = baseCheck(formData);
+    let cv = cardValidation(formData);
 
-    if(bc.success)
+    if(cv.success)
     {
-        res.status(200).json(bc);
+        res.status(200).json(cv);
     } else {
-        res.status(400).json(bc);
+        res.status(400).json(cv);
     }  
 });
   
