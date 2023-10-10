@@ -1,14 +1,25 @@
 const path = require('path');
 const express = require("express");
+const bodyParser = require('body-parser');
+const {baseCheck} = require("./src/baseCheck");
 
 const hostname = "127.0.0.1";
 const port = 3001;
 
 const app = express();
 app.use(express.static(path.resolve(__dirname, '../Frontend/dist')));
+app.use(bodyParser.json());
 
 app.post("/api/validate-form", (req, res) => {
-    res.json({ message: "Hello from server!" });
+    let formData = req.body;
+    let bc = baseCheck(formData);
+
+    if(bc.success)
+    {
+        res.status(200).json(bc);
+    } else {
+        res.status(400).json(bc);
+    }  
 });
   
 app.get('*', (req, res) => {

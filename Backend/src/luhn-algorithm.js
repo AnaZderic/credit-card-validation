@@ -1,5 +1,4 @@
 const LuhnAlgorithm = (cardNumber) => {
-    
     let sum = 0;
     let digits = cardNumber.split("");
     let position = false;
@@ -16,7 +15,6 @@ const LuhnAlgorithm = (cardNumber) => {
         position = !position;
     }
     return (sum % 10 === 0);
-    
 }
 
-export default LuhnAlgorithm;
+module.exports = {LuhnAlgorithm};

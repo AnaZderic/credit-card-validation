@@ -1,8 +1,11 @@
-const ExpirationDateCheck = (date) => {
+const { DateEdgeFactory } = require("./Factories/factory");
+
+const ExpirationDateCheck = (expDate) => {
+    let date = DateEdgeFactory(expDate);
     let currentDate = new Date();
-    if(date === currentDate) {
+    if (date >= currentDate) {
         return true;
-    } else {
-        return error;
-    }
+    } else false;
 }
+
+module.exports = {ExpirationDateCheck};
